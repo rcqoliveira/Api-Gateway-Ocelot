@@ -6,8 +6,6 @@
         public string Name { get; set; }
         public string FantasyName { get; set; }
 
-
-
         public Customer(int id, string name, string fantasyName)
         {
             this.Id = id;

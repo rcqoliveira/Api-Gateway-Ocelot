@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  gateway:
+    container_name: container-gateway
+    build:
+      context: .
+      dockerfile: ./RC.GatewayApi/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "7000:80"
+    networks:
+      - minha-rede
+    depends_on:
+      - "microservice-customer"
+      - "microservice-order"
+
+  microservice-customer:
+    container_name: container-ms-customer
+    build:
+      context: .
+      dockerfile: ./RC.CustomersApi/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "7001:80"
+    networks:
+      - minha-rede
+
+  microservice-order:
+    container_name: container-ms-order
+    build:
+      context: .
+      dockerfile: ./RC.OrdersApi/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "7002:80"
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge

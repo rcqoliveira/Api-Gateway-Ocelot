@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RC.Customers.Request;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,5 +34,14 @@ namespace RC.Customers.Controllers
         {
             return this.ListOfCustomers.FirstOrDefault(x => x.Id == currencyId);
         }
+
+        [HttpPost]
+        [Route("")]
+        public Customer GetByCard(CustomerRequest customerRequest )
+        {
+            return new Customer(1, "Roberto Carlos", "Rei");
+        }
+
+        
     }
 }
